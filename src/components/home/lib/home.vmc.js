@@ -3,9 +3,9 @@ export default {
     data () {
         return {
             items: [
-                { name: 'VueJS', src: require('../../../assets/vue.png') },
-                { name: 'Vuetify', src: require('../../../assets/vuetify.svg') },
-                { name: 'Data SNCF', src: require('../../../assets/sncf.jpg') },
+                { name: 'VueJS', src: require('../../../assets/img/vue.png') },
+                { name: 'Vuetify', src: require('../../../assets/img/vuetify.svg') },
+                { name: 'Data SNCF', src: require('../../../assets/img/sncf.jpg') },
             ],
         }
     },
