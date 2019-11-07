@@ -1,0 +1,10 @@
+#subtitle {
+    background-image: url('../../../assets/header-bg.jpg');
+    background-position: 0 53%;
+    background-size: cover;
+    color: #ffffff;
+    height: calc(100vh - 65vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
