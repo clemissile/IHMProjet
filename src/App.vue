@@ -28,20 +28,60 @@
       <v-divider></v-divider>
 
       <v-list dense>
-        <v-list-item
-                v-for="item in items"
-                :key="item.title"
-                :to="item.link"
-                link
-        >
+        <!-- Page d'accueil -->
+        <v-list-item to="/" link>
           <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>mdi-home</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <!-- Page des cartes -->
+        <v-list-item to="/carte" link>
+          <v-list-item-icon>
+            <v-icon>mdi-map-search</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Cartes</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <!-- Page des statistiques -->
+        <v-list-group no-action>
+          <template v-slot:activator>
+            <v-list-item-icon>
+              <v-icon>mdi-database</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Statistiques</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item to="/stats-greves">
+            <v-list-item-content>
+              <v-list-item-title>Greves</v-list-item-title>
+            </v-list-item-content>
+
+            <v-list-item-icon>
+              <v-icon>mdi-database</v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+
+          <v-list-item to="/stats-plop">
+            <v-list-item-content>
+              <v-list-item-title>Test 2</v-list-item-title>
+            </v-list-item-content>
+
+            <v-list-item-icon>
+              <v-icon>mdi-database</v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 
@@ -61,18 +101,14 @@ export default {
 
   },
   mounted() {
-    this.$store.dispatch("loadAPI", {dataset: 'liste-des-gares'});
+    this.$store.dispatch("loadAPIGares", {dataset: 'liste-des-gares'});
+    this.$store.dispatch("loadAPIGreves", {dataset: 'mouvements-sociaux-depuis-1994'});
     if (window.innerWidth < 800) {
       this.mini = true
     }
   },
   data () {
     return {
-      items: [
-        { title: 'Home', icon: 'mdi-home', link: '/' },
-        { title: 'Carte', icon: 'mdi-map-search', link: '/carte' },
-        { title: 'Statistiques', icon: 'mdi-database', link: '/stats' },
-      ],
       mini: false,
     }
   }
