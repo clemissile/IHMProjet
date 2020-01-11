@@ -3,18 +3,39 @@
 
     export default {
         extends: Doughnut,
-        props: {
-            chartdata: {
-                type: Object,
-                default: null
-            },
-            options: {
-                type: Object,
-                default: null
+        props: ["data", "options"],
+        mounted() {
+            this.renderLineChart();
+        },
+        computed: {
+            chartData: function() {
+                return this.data;
             }
         },
-        mounted () {
-            this.renderChart(this.chartdata, this.options);
+        methods: {
+            renderLineChart: function() {
+                this.renderChart(
+                    {
+                        labels: this.chartData.labels,
+                        datasets: [
+                            {
+                                label: this.chartData.dataName,
+                                backgroundColor: this.chartData.backgroundColor,
+                                data: this.chartData.data
+                            }
+                        ]
+                    },
+                    this.options
+                );
+            }
+        },
+        watch: {
+            data: function() {
+                if (this.$data._chart) {
+                    this.$data._chart.destroy();
+                }
+                this.renderLineChart();
+            }
         }
     }
 </script>

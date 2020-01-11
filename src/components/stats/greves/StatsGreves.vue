@@ -1,46 +1,51 @@
 <template>
     <v-container fluid>
         <v-row justify="center" align="center">
-            <h1>Les greves lol</h1>
+            <h1>Statistiques sur les grèves depuis 1994</h1>
         </v-row>
         <v-row justify="center" align="center" class="mx-5">
-            <BarChart :chartdata="chartdata" :options="options" v-if="!$store.state.loading"/>
-            <DonutChart :chartdata="chartdata" :options="options" v-if="!$store.state.loading"/>
+            <HorizontalBarChart :data="dataChart" :options="options" :height ="600" :width ="1000" v-if="!$store.state.loading"/>
             <MoonLoader v-else class="mt-12"/>
+        </v-row>
+        <v-row align="center" class="mx-5 mt-2">
+            <div>
+                <h3>Analyse</h3>
+                <p>
+                    Le graphique ci-dessus permet de distinguer quasiment immédiatemment les grands mouvements de grèves qu'a connu la France depuis 1994. Le pic
+                    de journées perdues est atteint en 1995, ce qui correspond aux protestations contre le plan Juppé sur les retraites et la Sécurité sociale.
+                </p>
+                <p>
+                    Le deuxième pic que l'on constate en 2018 correspond quand à lui à la contestation contre la réforme de la SNCF proposé au primtemps par
+                    Emmanuel Macron et son gouvernement.
+                </p>
+            </div>
         </v-row>
     </v-container>
 </template>
 
 <script>
-    import BarChart from '@/components/charts/BarChart.vue';
-    import DonutChart from "@/components/charts/DonutChart.vue";
+    import HorizontalBarChart from '@/components/charts/HorizontalBarChart.vue';
     import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
-    import randomColor from 'randomcolor';
 
     export default {
         name: "StatsGreves",
         data () {
             return {
                 greves: [],
-                chartdata: {
+                dataChart: {
                     labels: [],
-                    datasets: [
-                        {
-                            backgroundColor: "",
-                            data: [],
-                            label: ""
-                        }
-                    ]
+                    dataName: "Journées perdues",
+                    backgroundColor: "#5dc596",
+                    data: []
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                 }
             }
         },
         components: {
-            BarChart,
-            DonutChart,
+            HorizontalBarChart,
             MoonLoader
         },
         mounted:function(){
@@ -48,12 +53,26 @@
         },
         methods: {
             voirGreves: function () {
-                if (this.greve.length != 0) {
-                    this.chartdata.labels = ['2019', '2018', '2017'];
-                    this.chartdata.datasets[0].data = [20, 32, 12];
-                    this.chartdata.datasets[0].backgroundColor = "#000";
-                    this.chartdata.datasets[0].label = "Journées perdues";
-                    return ;
+                if (this.greve.length !== 0) {
+                    let dates = [];
+                    let donnees = [];
+                    this.greve.forEach((item) => {
+                        if (item.fields.date) {
+                            if (dates.indexOf(item.fields.date.substring(0, 4)) === -1) {
+                                dates.push(item.fields.date.substring(0, 4));
+                                donnees.push(item.fields.journees_perdues);
+                            } else {
+                                donnees[dates.indexOf(item.fields.date.substring(0, 4))] += item.fields.journees_perdues;
+                            }
+
+                        }
+                    });
+                    this.dataChart = {
+                        labels: dates,
+                        dataName: "Journées perdues",
+                        backgroundColor: "#5dc596",
+                        data: donnees
+                    }
                 }
             }
         },

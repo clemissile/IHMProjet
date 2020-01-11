@@ -68,7 +68,7 @@
             </v-list-item-content>
 
             <v-list-item-icon>
-              <v-icon>mdi-database</v-icon>
+              <v-icon>mdi-worker</v-icon>
             </v-list-item-icon>
           </v-list-item>
 
