@@ -5,6 +5,7 @@ import Home from '../components/home/Home.vue'
 import Carte from '../components/carte/Carte.vue'
 import StatsGreves from '../components/stats/greves/StatsGreves.vue'
 import StatsClients from '../components/stats/clients/StatsClients.vue'
+import StatsGares from '../components/stats/gares/StatsGares.vue'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,12 @@ const routes = [
     path: '/stats-clients',
     name: 'stats-clients',
     component: StatsClients
-  }
+  },
+  {
+    path: '/stats-gares',
+    name: 'stats-gares',
+    component: StatsGares
+  },
 ]
 
 const router = new VueRouter({

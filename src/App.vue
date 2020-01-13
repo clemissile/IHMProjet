@@ -81,6 +81,16 @@
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
           </v-list-item>
+
+          <v-list-item to="/stats-gares">
+            <v-list-item-content>
+              <v-list-item-title>Gares</v-list-item-title>
+            </v-list-item-content>
+
+            <v-list-item-icon>
+              <v-icon>mdi-train-variant</v-icon>
+            </v-list-item-icon>
+          </v-list-item>
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
@@ -103,7 +113,12 @@ export default {
   mounted() {
     this.$store.dispatch("loadAPIGares", {dataset: 'liste-des-gares'});
     this.$store.dispatch("loadAPIGreves", {dataset: 'mouvements-sociaux-depuis-1994'});
-    this.$store.dispatch("loadAPIClients", {dataset: 'repartition-des-motifs-de-deplacements-des-voyageurs-et-non-voyageurs-enquetes-e'});
+    this.$store.dispatch("loadAPIClients", {
+      dataset1: 'repartition-des-motifs-de-deplacements-des-voyageurs-et-non-voyageurs-enquetes-e',
+      dataset2: 'enquetes-gares-connexions-repartition-repartition-par-classe-dage',
+      dataset3: 'enquetes-gares-connexions-repartition-par-repartition-par-categories-socio-profe'
+    });
+    this.$store.dispatch("loadAPIGaresStats", {dataset: 'frequentation-gares'});
     if (window.innerWidth < 800) {
       this.mini = true
     }

@@ -4,7 +4,7 @@
             <h1>Statistiques sur les grèves depuis 1994</h1>
         </v-row>
         <v-row justify="center" align="center" class="mx-5">
-            <HorizontalBarChart :data="dataChart" :options="options" :height ="600" :width ="1000" v-if="!$store.state.loadingGe"/>
+            <HorizontalBarChart class="chart" :data="dataChart" :options="options" v-if="!$store.state.loadingGe"/>
             <MoonLoader v-else class="mt-12"/>
         </v-row>
         <v-row align="center" class="mx-5 mt-2">
@@ -85,5 +85,7 @@
 </script>
 
 <style scoped>
-
+    .chart {
+        width: 100%;
+    }
 </style>
