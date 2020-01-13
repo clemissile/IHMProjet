@@ -64,7 +64,7 @@
 
           <v-list-item to="/stats-greves">
             <v-list-item-content>
-              <v-list-item-title>Greves</v-list-item-title>
+              <v-list-item-title>Grèves</v-list-item-title>
             </v-list-item-content>
 
             <v-list-item-icon>
@@ -72,13 +72,13 @@
             </v-list-item-icon>
           </v-list-item>
 
-          <v-list-item to="/stats-plop">
+          <v-list-item to="/stats-clients">
             <v-list-item-content>
-              <v-list-item-title>Test 2</v-list-item-title>
+              <v-list-item-title>Clients</v-list-item-title>
             </v-list-item-content>
 
             <v-list-item-icon>
-              <v-icon>mdi-database</v-icon>
+              <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
           </v-list-item>
         </v-list-group>
@@ -103,6 +103,7 @@ export default {
   mounted() {
     this.$store.dispatch("loadAPIGares", {dataset: 'liste-des-gares'});
     this.$store.dispatch("loadAPIGreves", {dataset: 'mouvements-sociaux-depuis-1994'});
+    this.$store.dispatch("loadAPIClients", {dataset: 'repartition-des-motifs-de-deplacements-des-voyageurs-et-non-voyageurs-enquetes-e'});
     if (window.innerWidth < 800) {
       this.mini = true
     }

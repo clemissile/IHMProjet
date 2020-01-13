@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 
 import Home from '../components/home/Home.vue'
 import Carte from '../components/carte/Carte.vue'
-import StatsGreves from "../components/stats/greves/StatsGreves";
-import Stats from '../components/stats/Stats.vue'
+import StatsGreves from '../components/stats/greves/StatsGreves.vue'
+import StatsClients from '../components/stats/clients/StatsClients.vue'
 
 Vue.use(VueRouter)
 
@@ -25,9 +25,9 @@ const routes = [
     component: StatsGreves
   },
   {
-    path: '/stats-plop',
-    name: 'stats-plop',
-    component: Stats
+    path: '/stats-clients',
+    name: 'stats-clients',
+    component: StatsClients
   }
 ]
 

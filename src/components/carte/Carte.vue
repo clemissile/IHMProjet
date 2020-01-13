@@ -4,7 +4,7 @@
             <h1>Carte des gares françaises</h1>
         </v-row>
         <v-row justify="center" align="center" class="mx-5">
-            <Map :gares="gare" v-if="!$store.state.loading"/>
+            <Map :gares="gare" v-if="!$store.state.loadingGa"/>
             <MoonLoader v-else class="mt-12"/>
         </v-row>
     </v-container>

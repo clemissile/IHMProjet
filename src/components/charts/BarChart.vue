@@ -5,7 +5,7 @@
         extends: Bar,
         props: ["data", "options"],
         mounted() {
-            this.renderLineChart();
+            this.renderBarChart();
         },
         computed: {
             chartData: function() {
@@ -13,7 +13,7 @@
             }
         },
         methods: {
-            renderLineChart: function() {
+            renderBarChart: function() {
                 this.renderChart(
                     {
                         labels: this.chartData.labels,
@@ -34,7 +34,7 @@
                 if (this.$data._chart) {
                     this.$data._chart.destroy();
                 }
-                this.renderLineChart();
+                this.renderBarChart();
             }
         }
     }

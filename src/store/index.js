@@ -7,7 +7,9 @@ export default new Vuex.Store({
   state: {
     gares: [],
     greves: [],
-    loading: false,
+    clients: [],
+    loadingGa: false,
+    loadingGe: false,
   },
   mutations: {
     getGares: (state, gares) => {
@@ -16,26 +18,44 @@ export default new Vuex.Store({
     getGreves: (state, greves) => {
       state.greves = greves;
     },
-    setLoading: (state, loading) => {
-      state.loading = loading;
+    getClients: (state, clients) => {
+      state.clients = clients;
+    },
+    setLoadingGa: (state, loadingGa) => {
+      state.loadingGa = loadingGa;
+    },
+    setLoadingGe: (state, loadingGe) => {
+      state.loadingGe = loadingGe;
+    },
+    setLoadingCl: (state, loadingCl) => {
+      state.loadingCl = loadingCl;
     }
   },
   actions: {
     loadAPIGares(store, payload) {
-      store.commit("setLoading", true);
+      store.commit("setLoadingGa", true);
       fetch('https://data.sncf.com/api/records/1.0/search/?dataset='+payload.dataset+'&rows=4282&facet=fret&facet=voyageurs&facet=code_ligne&facet=departement').then(function (res) {
         res.json().then(function(res){
           store.commit("getGares", res.records);
-          store.commit("setLoading", false);
+          store.commit("setLoadingGa", false);
         })
       })
     },
     loadAPIGreves(store, payload) {
-      store.commit("setLoading", true);
+      store.commit("setLoadingGe", true);
       fetch('https://data.sncf.com/api/records/1.0/search/?dataset='+payload.dataset+'&sort=date&rows=311').then(function (res) {
         res.json().then(function(res){
           store.commit("getGreves", res.records);
-          store.commit("setLoading", false);
+          store.commit("setLoadingGe", false);
+        })
+      })
+    },
+    loadAPIClients(store, payload) {
+      store.commit("setLoadingCl", true);
+      fetch('https://data.sncf.com/api/records/1.0/search/?dataset='+payload.dataset+'&rows=300&facet=gare_enquetee&facet=motif_du_deplacement&facet=annee').then(function (res) {
+        res.json().then(function(res){
+          store.commit("getClients", res.records);
+          store.commit("setLoadingCl", false);
         })
       })
     }

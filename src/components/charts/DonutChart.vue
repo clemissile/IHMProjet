@@ -5,7 +5,7 @@
         extends: Doughnut,
         props: ["data", "options"],
         mounted() {
-            this.renderLineChart();
+            this.renderDonutChart();
         },
         computed: {
             chartData: function() {
@@ -13,7 +13,7 @@
             }
         },
         methods: {
-            renderLineChart: function() {
+            renderDonutChart: function() {
                 this.renderChart(
                     {
                         labels: this.chartData.labels,
@@ -34,7 +34,7 @@
                 if (this.$data._chart) {
                     this.$data._chart.destroy();
                 }
-                this.renderLineChart();
+                this.renderDonutChart();
             }
         }
     }

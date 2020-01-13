@@ -1,11 +1,11 @@
 <script>
-    import { HorizontalBar } from 'vue-chartjs';
+    import { Pie } from 'vue-chartjs';
 
     export default {
-        extends: HorizontalBar,
+        extends: Pie,
         props: ["data", "options"],
         mounted() {
-            this.renderHorizontalBarChart();
+            this.renderPieChart();
         },
         computed: {
             chartData: function() {
@@ -13,7 +13,7 @@
             }
         },
         methods: {
-            renderHorizontalBarChart: function() {
+            renderPieChart: function() {
                 this.renderChart(
                     {
                         labels: this.chartData.labels,
@@ -34,7 +34,7 @@
                 if (this.$data._chart) {
                     this.$data._chart.destroy();
                 }
-                this.renderHorizontalBarChart();
+                this.renderPieChart();
             }
         }
     }
