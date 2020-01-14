@@ -118,7 +118,10 @@ export default {
       dataset2: 'enquetes-gares-connexions-repartition-repartition-par-classe-dage',
       dataset3: 'enquetes-gares-connexions-repartition-par-repartition-par-categories-socio-profe'
     });
-    this.$store.dispatch("loadAPIGaresStats", {dataset: 'frequentation-gares'});
+    this.$store.dispatch("loadAPIGaresStats", {
+      dataset1: 'frequentation-gares',
+      dataset2: 'comptes-resultats-gares'
+    });
     if (window.innerWidth < 800) {
       this.mini = true
     }
